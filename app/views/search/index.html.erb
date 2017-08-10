@@ -1,0 +1,42 @@
+<!-- <h1>Search</h1> -->
+<!-- <p>Find me in app/views/search/index.html.erb</p> -->
+
+
+
+<%= form_tag root_path, method: 'get', class: "navbar-form" do %>
+  <div class="form-group">
+    <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search" %>
+    <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+
+<!--Table-->
+<% if @results.present? %>
+  <table class="table">
+    <!--Table head-->
+    <thead class="blue-grey lighten-4">
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Designed By</th>
+      </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+      <% @results.each do |result| %>
+        <tr>
+          <td><%= result[:Name]%></td>
+          <td><%= result[:Type]%></td>
+          <td><%= result[:"Designed by"]%></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <!--Table body-->
+  </table>
+  <!--Table-->
+<% else %>
+  No Result Found
+<% end %>
